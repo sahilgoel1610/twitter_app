@@ -5,23 +5,35 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+Installation process
 
-* System dependencies
+- Install homebrew
 
-* Configuration
+	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-* Database creation
+- Install rbenv 
+	brew install rbenv ruby-build
 
-* Database initialization
+	# Add rbenv to bash so that it loads every time you open a terminal
+	echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.bash_profile
+	source ~/.bash_profile
 
-* How to run the test suite
+	# Install Ruby
+	rbenv install 2.0.0-p647
+	rbenv global 2.0.0-p647
+	ruby -v
 
-* Services (job queues, cache servers, search engines, etc.)
+- Install bundler gem
+	gem install bundler
 
-* Deployment instructions
 
-* ...
+- Fork project to local using git
+
+- run command 'bundle' after cd into the root directory of project
+
+- ran command 'rails s' to start the server
+
+- Navigate to 'localhost:3000/bestTime'  in your browser to see the input form
 
 
 Please feel free to use a different markup language if you do not plan to run

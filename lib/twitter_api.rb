@@ -2,6 +2,7 @@ require 'cgi'
 require 'base64'
 require 'oauth'
 require 'twitter'
+
 class TwitterAPI
 
 	class << self
