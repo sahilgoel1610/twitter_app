@@ -9,22 +9,22 @@ Installation process
 
 - Install homebrew
 
-	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+		- ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 - Install rbenv 
-	brew install rbenv ruby-build
+		- brew install rbenv ruby-build
 
-	# Add rbenv to bash so that it loads every time you open a terminal
-	echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.bash_profile
-	source ~/.bash_profile
+		- # Add rbenv to bash so that it loads every time you open a terminal
+		echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.bash_profile
+		source ~/.bash_profile
 
-	# Install Ruby
-	rbenv install 2.0.0-p647
-	rbenv global 2.0.0-p647
-	ruby -v
+		- # Install Ruby
+		rbenv install 2.0.0-p647
+		rbenv global 2.0.0-p647
+		ruby -v
 
 - Install bundler gem
-	gem install bundler
+			- gem install bundler
 
 
 - Fork project to local using git
