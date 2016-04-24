@@ -2,6 +2,8 @@ class HomeController < ApplicationController
 
 	def show
 		clean_params
+		@user_name = params[:user_name]
+		@user_id = params[:user_id]
 		@best_time = @best_day = nil
 		@best_time, @best_day = GetBestTime.for_user(params[:user_name], params[:user_id]) if params[:user_id].present? || params[:user_name].present?
 	end

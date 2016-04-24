@@ -15,7 +15,7 @@ class TwitterAPI
 			rescue Exception => e
 				Rails.logger.info e
 			end	
-
+			return [] if response.nil?
 			ids = response.map{|follower| follower.id}
 			ids
 		end
@@ -25,20 +25,22 @@ class TwitterAPI
 		def get_tweets(user_ids)
 			query_options = query_options_for_tweets
 
-			responses = []
-			
-			user_ids.each do |user_id|
-				begin
-					response =  Tc.user_timeline(user_id,query_options)
-				rescue Exception => e
-					Rails.logger.info e
-				end
+			tweets, threads = [], []
 
-				next if response.nil?
-				response.each {|tweet| responses << tweet}
+			threads = user_ids.map do |user_id|	
+				Rails.logger.info("API for user #{user_id}")
+				Thread.new { 
+					begin
+						tweets << Tc.user_timeline(user_id, query_options) 
+					rescue Exception => e
+						Rails.logger.info e
+					end
+				}
 			end
+
+			threads.each(&:join)
 			
-			responses
+			tweets.flatten
 		end
 
 		def query_options_for_tweets

@@ -1,17 +1,20 @@
 <%= form_tag("/bestTime", method: "get") do %>
   <%= label_tag(:user_name, "User Name:") %>
-  <%= text_field_tag(:user_name) %>
+  <%= text_field_tag(:user_name, @user_name) %>
   <%= label_tag(:user_id, "User ID:") %>
-  <%= text_field_tag(:user_id) %>
+  <%= text_field_tag(:user_id, @user_id) %>
   <%= submit_tag("Get time") %>
 <% end %>
 
 </br>
 </br>
 </br>
-<%= "Best Time for Tweeting  is between #{@best_time} to #{@best_time + 1} hours" %>
-
+<% if @best_time.present? %>
+	<%= "Best Time for Tweeting  is between #{@best_time} to #{@best_time + 1} hours" %>
+<% end %>
 </br>
 </br>
 </br>
-<%= "Best Day for Tweeting is #{@best_day}" %>
+<% if @best_day.present? %>
+	<%= "Best Day for Tweeting is #{@best_day}" %>
+<% end %>

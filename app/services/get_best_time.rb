@@ -4,15 +4,16 @@ require 'util'
 class GetBestTime
 
 	class << self
-		def for_user(name,id)
+		
+		def for_user(name,id)	
 			followers = TwitterAPI.get_followers_id(name,id)
-			tweets = TwitterAPI.get_tweets(followers)
-			
+			tweets = TwitterAPI.get_tweets(followers) 
 			timestamps = extract_timestamp_from_tweets(tweets)
-			probable_time = probable_time(timestamps)
-			probable_day = probable_day(timestamps)
+			probable_day_time(timestamps)
+		end
 
-			[probable_time, probable_day]
+		def probable_day_time(timestamps)
+			timestamps.empty? ? [nil,'NA'] : [probable_time(timestamps),probable_day(timestamps)]
 		end
 
 		# returns an array of created_at timestamps from array of tweets
@@ -23,7 +24,6 @@ class GetBestTime
 		# Extracts probable time from array of timestamps
 		def probable_time(timestamps)
 			hours_array = timestamps.map(&:hour)
-			
 			hours_hash = Util.count_hash_of_elements(hours_array)
 			Util.max_value_key(hours_hash)
 		end
